@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <script type="text/javascript">
+        function checkForm(){
+            with(document.form1){
+                if(username.value.trim()=="" || password.value.trim()==""){
+                    window.alert("Inserisci Username e Password!");
+                    return false;
+                }
+            }
+        }
+    </script>
+
+
+    {% if not user is null %}
+        <h1>Hai effettuato l'accesso</h1>
+        <a href="/"><h2>Torna alla HomePage</h2></a>
+    {% else %}
+    {% if error is defined %}<h3>Credenziali errate!</h3>{% endif %}
+    <form method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
+        <ul>Username/Email: <input type="text" name="username"></ul>
+        <ul>Password: <input type="password" name="password"></ul>
+        <ul><input type="submit" value="Login"></ul>
+    </form>
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block menu %}
+    {% if not user is null %}
+        <div>
+            <a href="{{ path('addtrack') }}">Aggiungi</a>
+            <a href="">I miei brani</a>
+            <a href="">Le mie aggiunte</a>
+            <a href="">Il mio account</a>
+            <a href="{{ path('logout') }}">Logout</a>
+            {{ dump(user.idUser) }}
+        </div>
+    {% else %}
+        <div>
+                <button onclick="window.location.href='{{ path("login") }}'">Login</button>
+                <button onclick="window.location.href='{{ path("signup") }}'">Sign Up</button>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}{% endblock %}

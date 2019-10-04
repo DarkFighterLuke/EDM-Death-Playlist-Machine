@@ -2,14 +2,25 @@
 
 {% block content %}
     <div>
-        <ul><h2>{{ session.username }}</h2></ul>
-        <ul><h3>{{ session.email }}</h3></ul>
+        <ul><h2>{{ user.username }}</h2></ul>
+        <ul><h3>{{ user.email }}</h3></ul>
     </div>
 
     <div>
         <fieldset>
             <legend><h2>Spotify</h2></legend>
-            {{ session.accessToken }}
+            {%if user.accessToken is null %}
+                <a href="{{ path("spotifyauth") }}"><h2>Connetti</h2></a>
+            {% else %}
+                <h2>Connesso</h2>
+            {% endif %}
+        </fieldset>
+
+        <p></p>
+
+        <fieldset>
+            <legend><h2>Aggiunta settimanale</h2></legend>
+
         </fieldset>
     </div>
 

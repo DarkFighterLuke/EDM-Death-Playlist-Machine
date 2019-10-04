@@ -72,10 +72,6 @@ class LoginController extends AbstractController
         }
     }
 
-    static private function add(User $userobj){
-        array_push(user,$userobj);
-    }
-
     /**
      * @Route("/logout", name="logout")
      */

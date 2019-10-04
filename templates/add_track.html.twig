@@ -1,5 +1,32 @@
 {% extends 'home.html.twig' %}
 
 {% block content %}
-    <textarea rows="5" cols="150">Inserisci i link delle canzoni oppure accedi a Spotify.</textarea>
+    {% if user.accessToken is null %}
+        <textarea rows="5" cols="150">Inserisci i link delle canzoni oppure accedi a Spotify.</textarea>
+    {% else %}
+        <form method="GET" action="{{ path("search") }}">
+            <fieldset>
+                <legend><h2>Cerca brani</h2></legend>
+                <input type="text" name="query">
+                <input type="submit" value="Cerca">
+            </fieldset>
+        </form>
+    {% if results is defined %}
+            <form method="GET" action="{{ path("addto") }}">
+            <table>
+                <tr>
+                    <th>Titolo</th>
+                    <th>Artista</th>
+                    <th>Aggiungi</th>
+                </tr>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result.tracks.items.name }}</td>
+                    <td>{{ result.tracks.items.artists.name }}</td>
+                    <td><input type="checkbox" name="choosen" value="{{ result.tracks.items.id }}"></td>
+                </tr>
+            {% endfor %}
+            </table>
+            <input type="submit" value="Aggiungi">
+        </form>
 {% endblock %}

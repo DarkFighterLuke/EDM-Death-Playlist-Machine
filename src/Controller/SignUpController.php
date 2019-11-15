@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 
+use App\Entity\LoginModel;
+use App\Entity\SignUpModel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use mysqli;
@@ -37,22 +39,12 @@ class SignUpController extends AbstractController
             return $this->render("errorbase.html.twig", ["message" => "Username e/o password non validi."]);
         }
         else{
-            $db=new mysqli("localhost","root","","my_edmdeathplaylistmachine");
-            $statement=$db->prepare("SELECT username,email FROM user WHERE username=? OR email=?");
-            $statement=$db->prepare("SELECT username,email FROM user WHERE username=? OR email=?");
-            $statement->bind_param("ss",$username,$email);
-            $statement->execute();
-            $result=$statement->get_result();
-            if($result->num_rows>0){
-                $db->close();
+            $model=new SignUpModel();
+            $result=$model->register($username, $password, $email, $countryCode, $telephone);
+            if($result){
                 return $this->render("errorbase.html.twig", ["message" => "Username/Email già in uso."]);
             }
             else{
-                $statement=$db->prepare("INSERT INTO user (username,password,email,countryCode,telephone,admin) VALUES(?,AES_ENCRYPT(?,'chiavetemporanea'),?,?,?,0)");
-                $statement->bind_param("sssss",$username,$password,$email,$countryCode,$telephone);
-                $statement->execute();
-                $result=$statement->get_result();
-                $db->close();
                 return $this->render("successful.html.twig",["operation" => "registrazione", "link" => "/"]);
             }
         }

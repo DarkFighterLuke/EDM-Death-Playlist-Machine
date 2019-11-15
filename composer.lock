@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d578a338ba0e5e3aa32f55234ba870c",
+    "content-hash": "2ae041849d3d02ffeee79bf647634c9a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1371,16 +1371,16 @@
         },
         {
             "name": "jwilsson/spotify-web-api-php",
-            "version": "2.10.0",
+            "version": "2.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jwilsson/spotify-web-api-php.git",
-                "reference": "937a9f4ce9afb37921e03099403e6db1903dacfa"
+                "reference": "8b5e9fb02ed9ac941421856398314051e9155a40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jwilsson/spotify-web-api-php/zipball/937a9f4ce9afb37921e03099403e6db1903dacfa",
-                "reference": "937a9f4ce9afb37921e03099403e6db1903dacfa",
+                "url": "https://api.github.com/repos/jwilsson/spotify-web-api-php/zipball/8b5e9fb02ed9ac941421856398314051e9155a40",
+                "reference": "8b5e9fb02ed9ac941421856398314051e9155a40",
                 "shasum": ""
             },
             "require": {
@@ -1413,7 +1413,7 @@
             "keywords": [
                 "spotify"
             ],
-            "time": "2019-08-27T19:19:20+00:00"
+            "time": "2019-10-19T13:00:31+00:00"
         },
         {
             "name": "monolog/monolog",

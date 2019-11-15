@@ -23,7 +23,7 @@ class AddTrackController extends AbstractController
      * @Route("/addtrack", name="addtrack")
      */
     public function __invoke(){
-        return $this->render("add_track.html.twig", ["user" => isset($_SESSION['user'])?$_SESSION['user']:null]);
+        return $this->render("addtrack.html.twig", ["user" => isset($_SESSION['user'])?$_SESSION['user']:null]);
     }
 
 }

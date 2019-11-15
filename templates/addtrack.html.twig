@@ -11,6 +11,7 @@
                 <input type="submit" value="Cerca">
             </fieldset>
         </form>
+    {% endif %}
     {% if results is defined %}
             <form method="GET" action="{{ path("addto") }}">
             <table>
@@ -21,12 +22,13 @@
                 </tr>
             {% for result in results %}
                 <tr>
-                    <td>{{ result.tracks.items.name }}</td>
-                    <td>{{ result.tracks.items.artists.name }}</td>
-                    <td><input type="checkbox" name="choosen" value="{{ result.tracks.items.id }}"></td>
+                    <td>{{ result.name }}</td>
+                    <td>{{ result.artist }}</td>
+                    <td><input type="checkbox" name="choosen[]" value="{{ result.uri }}"></td>
                 </tr>
             {% endfor %}
             </table>
             <input type="submit" value="Aggiungi">
         </form>
+    {% endif %}
 {% endblock %}

@@ -6,7 +6,7 @@
             <a href="{{ path('home') }}">Home</a>
             <a href="{{ path('addtrack') }}">Aggiungi</a>
             <a href="">I miei brani</a>
-            <a href="">Le mie aggiunte</a>
+            <a href="{{ path("myadd") }}">Le mie aggiunte</a>
             <a href="{{ path("myprofile") }}">Il mio account</a>
             <a href="{{ path('logout') }}">Logout</a>
             {{ dump(user) }}

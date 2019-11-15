@@ -1,0 +1,79 @@
+{% extends 'home.html.twig' %}
+
+{% block content %}
+    <fieldset>
+        <legend>Questa settimana</legend>
+        {% if week is defined and week is not null %}
+            <table>
+                <tr>
+                    <th>Titolo</th>
+                    <th>Artista</th>
+                    <th>Aggiunta in passato</th>
+                </tr>
+                {% for track in week %}
+                    <tr>
+                        <td>{{ track.name }}</td>
+                        <td>{{ track.artist }}</td>
+                        {% if track.duplicated==1 %}
+                            <td>SI</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            Non ci sono brani qui.
+        {% endif %}
+    </fieldset>
+
+    <br/>
+
+    <fieldset>
+        <legend>La scorsa settimana</legend>
+        {% if week1 is defined and week1 is not null %}
+            <table>
+                <tr>
+                    <th>Titolo</th>
+                    <th>Artista</th>
+                    <th>Aggiunta in passato</th>
+                </tr>
+                {% for track in week1 %}
+                    <tr>
+                        <td>{{ track.name }}</td>
+                        <td>{{ track.artist }}</td>
+                        {% if track.duplicated==1 %}
+                            <td>SI</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            Non ci sono brani qui.
+        {% endif %}
+    </fieldset>
+
+    <br/>
+
+    <fieldset>
+        <legend>Le tue vecchie aggiunte</legend>
+        {% if oldweeks is defined and oldweeks is not null %}
+            <table>
+                <tr>
+                    <th>Titolo</th>
+                    <th>Artista</th>
+                    <th>Aggiunta in passato</th>
+                </tr>
+                {% for track in oldweeks %}
+                    <tr>
+                        <td>{{ track.name }}</td>
+                        <td>{{ track.artist }}</td>
+                        {% if track.duplicated==1 %}
+                            <td>SI</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            Non ci sono brani qui.
+        {% endif %}
+    </fieldset>
+{% endblock %}

@@ -6,6 +6,8 @@ use mysqli;
 
 class HandlerModel
 {
+    private $masterId=9;
+
     public function addToken($idUser, $access, $refresh){
         $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
         $statement=$db->prepare("UPDATE user SET accessToken=?, refreshToken=? WHERE idUSer=?");
@@ -20,6 +22,62 @@ class HandlerModel
             $db->close();
             return true;
         }
+    }
+
+    public function updatePlaylist(){
+        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $res=$db->query("SELECT accessToken, refreshToken FROM user WHERE idUser=$this->masterId");
+        $masterTokens=array();
+        if($res){
+            while($row = $res->fetch_assoc()){
+                $masterTokens["accessToken"]=$row["accessToken"];
+                $masterTokens["refreshToken"]=$row["refreshToken"];
+            }
+            $data["masterTokens"]=$masterTokens;
+        }
+
+        $res=$db->query("SELECT * FROM added_tracks WHERE duplicated IS NULL AND removed IS NULL AND datetime between date_sub(now(), INTERVAL 7 DAY) AND now() ORDER BY datetime DESC");
+        if($res){
+            $i=0;
+            while($row = $res->fetch_assoc()){
+                $tracks[$i]["trackUri"]=$row["trackUri"];
+                $i++;
+            }
+            $data["tracks"]=isset($tracks)?$tracks:array();
+        }
+
+        return $data;
+    }
+
+    public function isDuplicated($trackUri){
+        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $res=$db->query("SELECT * FROM added_tracks WHERE trackUri='$trackUri' AND removed IS NULL")->num_rows;
+        if($res>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function removeTrack($trackUri){
+        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $statement=$db->prepare("UPDATE added_tracks SET removed=1 WHERE trackUri=?");
+        $statement->bind_param("s", $trackUri);
+        $res=$statement->execute();
+        if($res){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function checkWeeksAdds($idUser){
+        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $res=$db->query("SELECT * FROM `added_tracks` WHERE idUser=$idUser AND datetime BETWEEN LastMonday() AND now() AND duplicated IS NULL AND removed IS NULL")->num_rows;
+
+        return $res;
     }
 
 }

@@ -13,7 +13,7 @@
     </script>
 
 
-    {% if not user is null %}
+    {% if user is defined and user is not null %}
         <h1>Hai effettuato l'accesso</h1>
         <a href="/"><h2>Torna alla HomePage</h2></a>
     {% else %}

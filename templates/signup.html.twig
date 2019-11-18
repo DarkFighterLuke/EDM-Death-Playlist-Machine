@@ -36,7 +36,7 @@
         <form method="POST" action="{{ path('signup') }}" name="form1" onsubmit="return(checkForm());">
             <ul>Username: <input type="text" name="username" maxlength="30"></ul>
             <ul>Password: <input type="password" name="password" maxlength="16"></ul>
-            <ul>Conferma Password: <input type="password" name="confpassword"></ul>
+            <ul>Conferma Password: <input type="password" name="confpassword" maxlength="16"></ul>
             <ul>Email: <input type="text" name="email"></ul>
             <ul>Conferma Email: <input type="text" name="confemail"></ul>
             <ul>Prefisso: <select name="countryCode" id="">

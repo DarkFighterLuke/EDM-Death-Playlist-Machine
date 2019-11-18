@@ -60,6 +60,7 @@ class LoginController extends AbstractController
         $session->clear();
         $session->set("status",0);*/
         $this->user=null;
+        $_SESSION["user"]=null;
         session_destroy();
         return $this->render("home.html.twig",["user" => null]);
         //return $this->redirectToRoute("home");

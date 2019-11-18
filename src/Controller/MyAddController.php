@@ -39,7 +39,7 @@ class MyAddController extends AbstractController
         $dataOldWeeks=$historyUris[2];
 
         //$t=$_SESSION["api"]->getTrack($dataWeek1[0]["trackUri"]);
-        //return $this->render("successful.html.twig", ["operation" => count($dataWeek1[0]), "link" => ""]);
+        //return $this->render("successful.html.twig", ["operation" => count($dataWeek), "link" => ""]);
 
         if(count($dataWeek[0])>0){
             $this->week[]=array();

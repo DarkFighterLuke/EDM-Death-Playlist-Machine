@@ -8,13 +8,18 @@
 
 namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use mysqli;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\Json;
 
 
 class SpotifyAuth extends AbstractController
 {
     private $spotifyHandler;
+
+    public $maxWeeklyAdds=5;
 
     public function __construct(){
         session_start();
@@ -46,6 +51,7 @@ class SpotifyAuth extends AbstractController
             $data[$i]["name"]=$item->name;
             $data[$i]["artist"]=$item->album->artists[0]->name;
             $data[$i]["uri"]=$item->uri;
+            $data[$i]["duplicated"]=$this->spotifyHandler->isDuplicated($item->uri);
             $i++;
         }
 
@@ -59,12 +65,69 @@ class SpotifyAuth extends AbstractController
     public function addTrack(){
         $idUser=$_SESSION['user']->idUser;
         $tracks=isset($_GET['choosen'])?$_GET['choosen']:array();
-        $this->spotifyHandler->addTrackHandler($idUser, $tracks);
-        return $this->render("addtrack.html.twig", ["user" => isset($_SESSION['user'])?$_SESSION['user']:null]);
+        //return $this->render("errorbase.html.twig", ["message" => $this->spotifyHandler->addTrackHandler($idUser, $tracks)]);
+        if(count($tracks)>$this->maxWeeklyAdds){
+            return $this->render("errorbase.html.twig", ["message" => "Too many tracks."]);
+        }
+        if(!$this->spotifyHandler->addTrackHandler($idUser, $tracks)){
+            return $this->render("errorbase.html.twig", ["message" => "Max number of Weekly adds reached."]);
+        }
+        else{
+            return $this->redirectToRoute("myadd");
+        }
     }
 
 
     public function parseInfoFromUri($trackUri){
         return $this->spotifyHandler->parseInfoFromUriHandler($trackUri);
+    }
+
+    /**
+     * @Route("/updateplaylist")
+     */
+    public function updatePlaylist(){
+        $timerUpdate=new timerUpdate();
+        if($timerUpdate->timer()){
+            $success=$this->spotifyHandler->updatePlaylistHandler();
+        }
+        else{
+            $success=false;
+        }
+
+        if($success){
+            return $this->render("successful.html.twig", ["operation" => "Playlist Update", "link" => ""]);
+        }
+        else{
+            return $this->render("errorbase.html.twig", ["message" => "Playlist Update failed."]);
+        }
+    }
+
+    /**
+     * @Route("/removetrack", name="removetrack")
+     */
+    public function removeTrack(){
+        $trackUri=isset($_POST["choosen"])?$_POST["choosen"]:array();
+        $i=0;
+        foreach($trackUri as $uri){
+            $tracks["tracks"][$i]["id"]=$uri;
+            $i++;
+        }
+        $this->spotifyHandler->removeTrackHandler($trackUri, $tracks);
+        return $this->redirect("https://edm-death-playlist-machine.netsons.org/public/index.php/myadd");
+    }
+
+    /**
+     * @Route("/checkWeekAdds", name="checkWeekAdds")
+     */
+    public function checkWeeksAdds(){
+        return new JsonResponse(["adds" => $this->spotifyHandler->checkWeeksAdds($_SESSION['user']->idUser)]);
+    }
+
+    /**
+     * @Route("/mytracks", name="mytracks")
+     */
+    public function myTracks(){
+        $tracks=$this->spotifyHandler->myTracksHandler($_SESSION["user"]);
+        return $this->render("mytracks.html.twig", ["user" => isset($_SESSION['user'])?$_SESSION['user']:null, "results" => $tracks]);
     }
 }

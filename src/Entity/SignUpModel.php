@@ -16,7 +16,7 @@ class SignUpModel
         $result=$statement->get_result();
         if($result->num_rows>0) {
             $db->close();
-            return false;
+            return true;
         }
         else {
             $statement = $db->prepare("INSERT INTO user (username,password,email,countryCode,telephone,admin) VALUES(?,AES_ENCRYPT(?,'chiavetemporanea'),?,?,?,0)");
@@ -24,7 +24,7 @@ class SignUpModel
             $statement->execute();
             $result = $statement->get_result();
             $db->close();
-            return true;
+            return false;
         }
     }
 

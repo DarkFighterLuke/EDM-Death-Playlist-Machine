@@ -4,6 +4,12 @@
     {% if user.accessToken is null %}
         <textarea rows="5" cols="150">Inserisci i link delle canzoni oppure accedi a Spotify.</textarea>
     {% else %}
+        <div>
+            <fieldset>
+                <h5>Aggiunte rimanenti: </h5>
+                <h4></h4>
+            </fieldset>
+        </div>
         <form method="GET" action="{{ path("search") }}">
             <fieldset>
                 <legend><h2>Cerca brani</h2></legend>
@@ -13,7 +19,7 @@
         </form>
     {% endif %}
     {% if results is defined %}
-            <form method="GET" action="{{ path("addto") }}">
+        <form method="GET" action="{{ path("addto") }}">
             <table>
                 <tr>
                     <th>Titolo</th>
@@ -24,11 +30,62 @@
                 <tr>
                     <td>{{ result.name }}</td>
                     <td>{{ result.artist }}</td>
-                    <td><input type="checkbox" name="choosen[]" value="{{ result.uri }}"></td>
+                    {% if result.duplicated %}
+                        <td>Già presente in playlist</td>
+                    {% else %}
+                        <td name="checkboxtd"><input class="checkbox" type="checkbox" name="choosen[]" value="{{ result.uri }}" onclick="countChecked();"></td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </table>
-            <input type="submit" value="Aggiungi">
+            <input id="add" type="submit" value="Aggiungi">
         </form>
     {% endif %}
+
+    <script type="text/javascript">
+        window.onload=checkWeekAdds();
+        var maxWeeklyAdds=5;
+
+        var remains;
+        function checkWeekAdds(){
+            let url="{{ path("checkWeekAdds") }}";
+            fetch(url)
+                .then(response => {return response.json()})
+                .then(data => {
+                    let label=document.getElementsByTagName("h4")[0];
+                    label.textContent=(maxWeeklyAdds-data.adds).toString();
+                    remains=maxWeeklyAdds-data.adds;
+                    if(maxWeeklyAdds-data.adds==0){
+                        let td=document.getElementsByName("checkboxtd");
+                        for(let i=0; i<td.length; i++){
+                            td[i].style.display="none";
+                        }
+                        document.getElementById("add").style.display="none";
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+
+        function countChecked(){
+            let checkboxes=document.getElementsByClassName("checkbox");
+            let remainCount;
+            let count=0;
+            for(let i=0; i<checkboxes.length; i++){
+                if(checkboxes[i].checked){
+                    count++;
+                }
+            }
+            if(remains-count<0){
+                document.getElementById("add").style.display="none";
+                remainCount=0;
+            }
+            else{
+                document.getElementById("add").style.display="initial";
+                remainCount=remains-count;
+            }
+            document.getElementsByTagName("h4")[0].textContent=remainCount;
+        }
+    </script>
 {% endblock %}

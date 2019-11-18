@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19ee701-d140-4db1-8d4c-fb910d2afeea" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/timerUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/timerUpdate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cover Playlist Spotify.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HostFree details.png" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

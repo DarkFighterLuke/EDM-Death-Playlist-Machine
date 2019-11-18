@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19ee701-d140-4db1-8d4c-fb910d2afeea" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Cover Playlist Spotify.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HostFree details.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/timerUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/timerUpdate.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -190,6 +190,7 @@
       <workItem from="1573902761107" duration="22398000" />
       <workItem from="1573949059722" duration="2120000" />
       <workItem from="1573985658678" duration="23859000" />
+      <workItem from="1574108071928" duration="18000" />
     </task>
     <servers />
   </component>

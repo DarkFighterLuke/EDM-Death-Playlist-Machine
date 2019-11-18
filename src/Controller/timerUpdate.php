@@ -5,7 +5,7 @@ namespace App\Controller;
 
 class timerUpdate
 {
-    private $intervalDays=1;
+    private $intervalDays=7;
     private $lastUpdate;
 
     public function __construct()

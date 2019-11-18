@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c19ee701-d140-4db1-8d4c-fb910d2afeea" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/MyTracksController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/timerUpdate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/mytracks.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MyAddController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MyAddController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/HandlerModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/HandlerModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/MyAddModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/MyAddModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/SignUpModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/SignUpModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/addtrack.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/addtrack.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/myadd.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/myadd.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/signup.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/timerUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/timerUpdate.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

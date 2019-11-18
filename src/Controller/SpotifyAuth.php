@@ -87,6 +87,7 @@ class SpotifyAuth extends AbstractController
      */
     public function updatePlaylist(){
         $timerUpdate=new timerUpdate();
+        //return $this->render("errorbase.html.twig", ["message" => $timerUpdate->timer()]);
         if($timerUpdate->timer()){
             $success=$this->spotifyHandler->updatePlaylistHandler();
         }

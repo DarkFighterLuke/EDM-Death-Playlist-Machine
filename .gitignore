@@ -17,3 +17,7 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+
+./hnlzewad_edmdeathplaylistmachine.sql
+./my_edmdeathplaylistmachine.sql
+

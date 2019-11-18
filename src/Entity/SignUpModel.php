@@ -7,11 +7,11 @@ use mysqli;
 
 class SignUpModel
 {
-    public function register($username, $password, $email, $countryCode, $telephone){
+    public function register($username, $password, $countryCode, $telephone){
         $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
-        $statement=$db->prepare("SELECT username,email FROM user WHERE username=? OR email=?");
-        $statement=$db->prepare("SELECT username,email FROM user WHERE username=? OR email=?");
-        $statement->bind_param("ss",$username,$email);
+        $statement=$db->prepare("SELECT username FROM user WHERE username=?");
+        $statement=$db->prepare("SELECT username FROM user WHERE username=?");
+        $statement->bind_param("s",$username);
         $statement->execute();
         $result=$statement->get_result();
         if($result->num_rows>0) {
@@ -19,8 +19,8 @@ class SignUpModel
             return true;
         }
         else {
-            $statement = $db->prepare("INSERT INTO user (username,password,email,countryCode,telephone,admin) VALUES(?,AES_ENCRYPT(?,'chiavetemporanea'),?,?,?,0)");
-            $statement->bind_param("sssss", $username, $password, $email, $countryCode, $telephone);
+            $statement = $db->prepare("INSERT INTO user (username,password,countryCode,telephone,admin) VALUES(?,AES_ENCRYPT(?,'chiavetemporanea'),?,?,0)");
+            $statement->bind_param("ssss", $username, $password, $countryCode, $telephone);
             $statement->execute();
             $result = $statement->get_result();
             $db->close();

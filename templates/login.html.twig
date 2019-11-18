@@ -19,7 +19,7 @@
     {% else %}
     {% if error is defined %}<h3>Credenziali errate!</h3>{% endif %}
     <form method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
-        <ul>Username/Email: <input type="text" name="username"></ul>
+        <ul>Username: <input type="text" name="username"></ul>
         <ul>Password: <input type="password" name="password"></ul>
         <ul><input type="submit" value="Login"></ul>
     </form>

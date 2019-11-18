@@ -32,7 +32,7 @@ class SignUpController extends AbstractController
     public function register(){
         $username=$_POST['username'];
         $password=$_POST['password'];
-        $email=$_POST['email'];
+        //$email=$_POST['email'];
         $countryCode=$_POST['countryCode'];
         $telephone=$_POST['telephone'];
         if(preg_match("/^.*([^A-Za-z0-9]).*$/",$username)==1 || $username==null || $password==null || strlen($username)>30 || strlen($password)>16) {
@@ -40,7 +40,7 @@ class SignUpController extends AbstractController
         }
         else{
             $model=new SignUpModel();
-            $result=$model->register($username, $password, $email, $countryCode, $telephone);
+            $result=$model->register($username, $password, $countryCode, $telephone);
             if($result){
                 return $this->render("errorbase.html.twig", ["message" => "Username/Email già in uso."]);
             }

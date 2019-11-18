@@ -252,7 +252,7 @@ class Handler{
             $tracks[$i]["duplicated"]=$this->model->isDuplicated($item->track->uri);
             $i++;
         }
-        return $tracks;
+        return isset($tracks)?$tracks:null;
     }
 }
 ?>

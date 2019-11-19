@@ -9,9 +9,8 @@ class SignUpModel
 {
     public function register($username, $password, $countryCode, $telephone){
         $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
-        $statement=$db->prepare("SELECT username FROM user WHERE username=?");
-        $statement=$db->prepare("SELECT username FROM user WHERE username=?");
-        $statement->bind_param("s",$username);
+        $statement=$db->prepare("SELECT username FROM user WHERE username=? OR telephone=?");
+        $statement->bind_param("ss",$username, $telephone);
         $statement->execute();
         $result=$statement->get_result();
         if($result->num_rows>0) {

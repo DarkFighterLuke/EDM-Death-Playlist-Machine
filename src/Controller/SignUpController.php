@@ -42,7 +42,7 @@ class SignUpController extends AbstractController
             $model=new SignUpModel();
             $result=$model->register($username, $password, $countryCode, $telephone);
             if($result){
-                return $this->render("errorbase.html.twig", ["message" => "Username/Email già in uso."]);
+                return $this->render("errorbase.html.twig", ["message" => "Username/Telefono già in uso."]);
             }
             else{
                 return $this->render("successful.html.twig",["operation" => "registrazione", "link" => "/"]);

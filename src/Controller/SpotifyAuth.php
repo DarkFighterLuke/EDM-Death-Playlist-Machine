@@ -131,4 +131,12 @@ class SpotifyAuth extends AbstractController
         $tracks=$this->spotifyHandler->myTracksHandler($_SESSION["user"]);
         return $this->render("mytracks.html.twig", ["user" => isset($_SESSION['user'])?$_SESSION['user']:null, "results" => $tracks]);
     }
+
+    /**
+     * @Route("/", name="home")
+     */
+    public function showOfficialPlaylist(){
+        $tracks=$this->spotifyHandler->showOfficialPlaylistHandler();
+        return $this->render("home.html.twig", ["user" => isset($_SESSION['user'])?$_SESSION['user']:null, "results" => $tracks]);
+    }
 }

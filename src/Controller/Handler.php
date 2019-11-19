@@ -201,7 +201,7 @@ class Handler{
         }
     }*/
 
-    public function createTempAPI(){
+    public function createMasterTempAPI(){
         $data=$this->model->updatePlaylist();
         $tempapi=new SpotifyWebAPI\SpotifyWebAPI();
         $session=$this->loginSetSession($data["masterTokens"]["accessToken"], $data["masterTokens"]["refreshToken"]);
@@ -214,7 +214,7 @@ class Handler{
 
     public function updatePlaylistHandler(){
         $data=$this->model->updatePlaylist();
-        $tempapi=$this->createTempAPI();
+        $tempapi=$this->createMasterTempAPI();
         try{
             if($data["tracks"]){
                 $i=0;
@@ -232,7 +232,7 @@ class Handler{
     }
 
     public function removeTrackHandler($trackUri, $tracks){
-        $tempapi = $this->createTempAPI();
+        $tempapi = $this->createMasterTempAPI();
         $tempapi->deletePlaylistTracks(self::playlistID, $tracks);
         foreach($trackUri as $uri){
             $success=$this->model->removeTrack($uri);
@@ -250,6 +250,20 @@ class Handler{
             $tracks[$i]["artist"]=$item->track->artists[0]->name;;
             $tracks[$i]["uri"]=$item->track->uri;
             $tracks[$i]["duplicated"]=$this->model->isDuplicated($item->track->uri);
+            $i++;
+        }
+        return isset($tracks)?$tracks:null;
+    }
+
+    public function showOfficialPlaylistHandler(){
+        $tempapi=$this->createMasterTempAPI();
+        $songs=$tempapi->getPlaylistTracks(self::playlistID);
+        $i=0;
+        foreach($songs->items as $item){
+            $tracks[$i]["name"]=$item->track->name;
+            $tracks[$i]["artist"]=$item->track->artists[0]->name;;
+            $tracks[$i]["uri"]=$item->track->uri;
+            $tracks[$i]["album"]=$item->track->album->name;
             $i++;
         }
         return isset($tracks)?$tracks:null;

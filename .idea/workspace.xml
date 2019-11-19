@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c19ee701-d140-4db1-8d4c-fb910d2afeea" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SignUpController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SignUpController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/SignUpModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/SignUpModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/timerUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/timerUpdate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -193,7 +196,8 @@
       <workItem from="1573985658678" duration="23859000" />
       <workItem from="1574108071928" duration="18000" />
       <workItem from="1574108662246" duration="4329000" />
-      <workItem from="1574172479060" duration="1062000" />
+      <workItem from="1574172479060" duration="1694000" />
+      <workItem from="1574175187097" duration="2413000" />
     </task>
     <servers />
   </component>

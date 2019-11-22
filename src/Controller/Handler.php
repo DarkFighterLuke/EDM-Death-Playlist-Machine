@@ -100,7 +100,7 @@ class Handler{
         //check scope and then:
         $this->api->setAccessToken($session->getAccessToken());
         $_SESSION["api"]=$this->api;
-        header("Location: https://edm-death-playlist-machine.netsons.org/public/index.php/profile");
+        header("Location: https://edm-death-playlist-machine.netsons.org/public/index.php/");
     }
 
     public function loginSetSession($accessToken, $refreshToken){
@@ -264,6 +264,7 @@ class Handler{
             $tracks[$i]["artist"]=$item->track->artists[0]->name;;
             $tracks[$i]["uri"]=$item->track->uri;
             $tracks[$i]["album"]=$item->track->album->name;
+            $tracks[$i]["postedBy"]=$this->model->postedBy($item->track->uri);
             $i++;
         }
         return isset($tracks)?$tracks:null;

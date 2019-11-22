@@ -80,4 +80,11 @@ class HandlerModel
         return $res;
     }
 
+    public function postedBy($uri){
+        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $res=$db->query("SELECT username FROM user INNER JOIN added_tracks ON(user.idUser=added_tracks.idUser) WHERE removed IS NULL AND duplicated IS NULL AND trackUri='$uri'");
+        $row=$res->fetch_assoc();
+        return $row["username"];
+    }
+
 }

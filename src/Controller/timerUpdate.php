@@ -3,10 +3,11 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
+
 class timerUpdate
 {
-    private $intervalDays=1;
-    private $intervalTime="1630";
+    private $intervalDays=7;
     private $lastUpdate;
 
     public function __construct()
@@ -16,11 +17,13 @@ class timerUpdate
 
     public function timer(){
         $now=new \DateTime();
-        if((int)$now->diff($this->lastUpdate,true)->format('%d')%$this->intervalDays==0 and $now->diff($this->lastUpdate,true)->format("%h%i")==$this->intervalTime){
+        if((int)$now->diff($this->lastUpdate,true)->format('%d')%$this->intervalDays==0){
             $this->lastUpdate=$now;
+            error_log("true",0);
             return true;
         }
         else{
+            error_log("false",0);
             return false;
         }
     }

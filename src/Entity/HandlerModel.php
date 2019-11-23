@@ -75,7 +75,7 @@ class HandlerModel
 
     public function checkWeeksAdds($idUser){
         $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
-        $res=$db->query("SELECT * FROM `added_tracks` WHERE idUser=$idUser AND datetime BETWEEN LastMonday() AND now() AND duplicated IS NULL AND removed IS NULL")->num_rows;
+        $res=$db->query("SELECT * FROM `added_tracks` WHERE idUser=$idUser AND datetime BETWEEN LastSaturday() AND now() AND duplicated IS NULL AND removed IS NULL")->num_rows;
 
         return $res;
     }

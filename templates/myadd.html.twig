@@ -25,7 +25,7 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <input type="submit" value="Rimuovi">
+                <input type="submit" value="Rimuovi" onclick="return isSomethingChecked();">
             </form>
         {% else %}
             Non ci sono brani qui.
@@ -58,7 +58,7 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <input type="submit" value="Rimuovi">
+                <input type="submit" value="Rimuovi" onclick="return isSomethingChecked();">
             </form>
         {% else %}
             Non ci sono brani qui.
@@ -91,10 +91,22 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <input type="submit" value="Rimuovi">
+                <input type="submit" value="Rimuovi" onclick="return isSomethingChecked();">
             </form>
         {% else %}
             Non ci sono brani qui.
         {% endif %}
     </fieldset>
+
+    <script type="text/javascript">
+        function isSomethingChecked(){
+            let checkboxes=document.getElementsByName("choosen");
+            for(checkbox in checkboxes){
+                if(checkbox.checked==true){
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
 {% endblock %}

@@ -107,13 +107,15 @@ class SpotifyAuth extends AbstractController
      * @Route("/removetrack", name="removetrack")
      */
     public function removeTrack(){
-        $trackUri=isset($_POST["choosen"])?$_POST["choosen"]:array();
+        $trackUri=isset($_POST["choosen"])?$_POST["choosen"]:null;
         $i=0;
-        foreach($trackUri as $uri){
-            $tracks["tracks"][$i]["id"]=$uri;
-            $i++;
+        if($trackUri!=null){
+            foreach($trackUri as $uri){
+                $tracks["tracks"][$i]["id"]=$uri;
+                $i++;
+            }
+            $this->spotifyHandler->removeTrackHandler($trackUri, $tracks);
         }
-        $this->spotifyHandler->removeTrackHandler($trackUri, $tracks);
         return $this->redirect("https://edm-death-playlist-machine.netsons.org/public/index.php/myadd");
     }
 

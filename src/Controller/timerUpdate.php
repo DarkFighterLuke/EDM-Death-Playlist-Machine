@@ -12,7 +12,7 @@ class timerUpdate
 
     public function __construct()
     {
-        $this->lastUpdate=new \DateTime('2019-11-18 00:00:00');
+        $this->lastUpdate=new \DateTime('2019-11-16 00:00:00');
     }
 
     public function timer(){

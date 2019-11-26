@@ -27,7 +27,7 @@
                     </tr>
                 {% endfor %}
             </table>
-            <input id="add" type="submit" value="Aggiungi">
+            <input id="add" type="submit" value="Aggiungi" style="display: none">
         </form>
 
 
@@ -60,6 +60,7 @@
             function countChecked(){
                 let checkboxes=document.getElementsByClassName("checkbox");
                 let remainCount;
+                //document.getElementById("add").style.display="none";
                 let count=0;
                 for(let i=0; i<checkboxes.length; i++){
                     if(checkboxes[i].checked){
@@ -73,6 +74,9 @@
                 else{
                     document.getElementById("add").style.display="initial";
                     remainCount=remains-count;
+                }
+                if(count==0){
+                    document.getElementById("add").style.display="none";
                 }
                 document.getElementsByTagName("h4")[0].textContent=remainCount;
             }

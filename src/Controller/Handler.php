@@ -219,7 +219,7 @@ class Handler{
             if($data["tracks"]){
                 $i=0;
                 while($i<count($data["tracks"])){
-                    $tempapi->addPlaylistTracks(self::playlistID, $data["tracks"][$i]["trackUri"]);
+                    $tempapi->addPlaylistTracks(self::playlistID, $data["tracks"][$i]["trackUri"], ["position" => 0]);
                     $i++;
                 }
             }

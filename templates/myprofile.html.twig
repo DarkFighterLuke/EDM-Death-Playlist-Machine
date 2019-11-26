@@ -2,14 +2,15 @@
 
 {% block content %}
     <div>
-        <ul><h2>{{ user.username }}</h2></ul>
-        <ul><h3>{{ user.email }}</h3></ul>
+        <fieldset>
+            <legend><h2>I miei dati memorizzati</h2></legend>
+            {{ dump(user) }}
+        </fieldset>
+        <!--<ul><h2>{{ user.username }}</h2></ul>-->
+        <!--<ul><h3>{{ user.email }}</h3></ul>-->
     </div>
 
     <div>
-        {% if var is defined %}
-        <h3>{{ var }}</h3>
-        {% endif %}
         <fieldset>
             <legend><h2>Spotify</h2></legend>
             {%if user.accessToken is null %}
@@ -21,10 +22,10 @@
 
         <p></p>
 
-        <fieldset>
-            <legend><h2>Aggiunta settimanale</h2></legend>
+        <!--<fieldset>
+            <legend><h2>Top 3 in Playlist</h2></legend>
 
-        </fieldset>
+        </fieldset>-->
     </div>
 
 {% endblock %}

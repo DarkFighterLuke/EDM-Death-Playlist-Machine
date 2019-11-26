@@ -14,14 +14,14 @@
 
 
     {% if user is defined and user is not null %}
-        <h1>Hai effettuato l'accesso</h1>
+        <h1 class="center">Hai effettuato l'accesso</h1>
         <a href="/"><h2>Torna alla HomePage</h2></a>
     {% else %}
     {% if error is defined %}<h3>Credenziali errate!</h3>{% endif %}
-    <form method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
-        <ul>Username: <input type="text" name="username"></ul>
-        <ul>Password: <input type="password" name="password"></ul>
-        <ul><input type="submit" value="Login"></ul>
+    <form class="formOne" method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
+        <ul class="center"><input type="text" name="username" placeholder="Username"></ul>
+        <ul class="center"><input type="password" name="password" placeholder="Password"></ul>
+        <ul class="center"><input type="submit" value="Login"></ul>
     </form>
     {% endif %}
 {% endblock %}

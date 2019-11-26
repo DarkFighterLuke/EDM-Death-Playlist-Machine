@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c19ee701-d140-4db1-8d4c-fb910d2afeea" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/addtrack.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/addtrack.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/myprofile.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/myprofile.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mytracks.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mytracks.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -207,7 +202,7 @@
       <workItem from="1574363984152" duration="5179000" />
       <workItem from="1574509399724" duration="9877000" />
       <workItem from="1574707625864" duration="2604000" />
-      <workItem from="1574784667808" duration="6200000" />
+      <workItem from="1574784667808" duration="6204000" />
     </task>
     <servers />
   </component>

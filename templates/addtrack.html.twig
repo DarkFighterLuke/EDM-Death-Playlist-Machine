@@ -18,7 +18,7 @@
             </fieldset>
         </form>
     {% endif %}
-    {% if results is defined %}
+    {% if results is defined and results is not null and found is not defined %}
         <form method="GET" action="{{ path("addto") }}">
             <table>
                 <tr>
@@ -45,7 +45,6 @@
     <script type="text/javascript">
         window.onload=checkWeekAdds();
         var maxWeeklyAdds=5;
-
         var remains;
         function checkWeekAdds(){
             let url="{{ path("checkWeekAdds") }}";
@@ -67,7 +66,6 @@
                     console.log(err);
                 })
         }
-
         function countChecked(){
             let checkboxes=document.getElementsByClassName("checkbox");
             let remainCount;

@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c19ee701-d140-4db1-8d4c-fb910d2afeea" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/templates/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html.twig" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/Controller/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SpotifyAuth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/timerUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/timerUpdate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/addtrack.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/addtrack.html.twig" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -201,10 +209,19 @@
       <workItem from="1574172479060" duration="1694000" />
       <workItem from="1574175187097" duration="2659000" />
       <workItem from="1574363984152" duration="5179000" />
+<<<<<<< Updated upstream
       <workItem from="1574509399724" duration="9877000" />
       <workItem from="1574707625864" duration="2604000" />
       <workItem from="1574784667808" duration="6204000" />
       <workItem from="1574797492920" duration="990000" />
+=======
+      <workItem from="1574509399724" duration="5573000" />
+      <workItem from="1574680955375" duration="2659000" />
+      <workItem from="1574684166238" duration="30000" />
+      <workItem from="1574765227992" duration="627000" />
+      <workItem from="1574766331679" duration="693000" />
+      <workItem from="1574839499931" duration="2587000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

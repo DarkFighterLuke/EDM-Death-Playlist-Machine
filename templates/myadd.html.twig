@@ -100,9 +100,9 @@
 
     <script type="text/javascript">
         function isSomethingChecked(){
-            let checkboxes=document.getElementsByName("choosen");
-            for(checkbox in checkboxes){
-                if(checkbox.checked==true){
+            let checkboxes=document.getElementsByName("choosen[]");
+            for(let i=0; i<checkboxes.length; i++){
+                if(checkboxes[i].checked){
                     return true;
                 }
             }

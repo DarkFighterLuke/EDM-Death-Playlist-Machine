@@ -19,10 +19,19 @@
     {% else %}
     {% if error is defined %}<h3>Credenziali errate!</h3>{% endif %}
     <form class="formOne" method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
-        <ul class="center"><input type="text" name="username" placeholder="Username"></ul>
-        <ul class="center"><input type="password" name="password" placeholder="Password"></ul>
-        <ul class="center"><input type="submit" value="Login"></ul>
+        <input class="formOneInput" type="text" name="username" placeholder="Username"><br/>
+        <input class="formOneInput" type="password" name="password" placeholder="Password"><br/>
+        <input class="buttonLogin" type="submit" value="Login">
     </form>
     {% endif %}
+    <br/>
+
+    <div class="wrap-collabsible">
+        <input id="collapsible" class="toggle" type="checkbox" style="display: none">
+        <label for="collapsible" class="lbl-toggle">More Info</label>
+        <div class="collapsible-content">
+            {% include "playlistTracklist.html.twig" %}
+        </div>
+    </div>
 {% endblock %}
 

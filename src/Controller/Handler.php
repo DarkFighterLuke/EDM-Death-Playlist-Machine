@@ -219,13 +219,7 @@ class Handler{
             if($data["tracks"]){
                 $i=0;
                 while($i<count($data["tracks"])){
-<<<<<<< Updated upstream
                     $tempapi->addPlaylistTracks(self::playlistID, $data["tracks"][$i]["trackUri"], ["position" => 0]);
-=======
-                    if(!$this->isRedundantInPlaylist($data["tracks"][$i]["trackUri"])){
-                        $tempapi->addPlaylistTracks(self::playlistID, $data["tracks"][$i]["trackUri"]);
-                    }
->>>>>>> Stashed changes
                     $i++;
                 }
             }
@@ -258,7 +252,6 @@ class Handler{
             $tracks[$i]["duplicated"]=$this->model->isDuplicated($item->track->uri);
             $i++;
         }
-        echo var_dump($library);
         return isset($tracks)?$tracks:null;
     }
 
@@ -276,17 +269,5 @@ class Handler{
         }
         return isset($tracks)?$tracks:null;
     }
-
-    public function isRedundantInPlaylist($trackUri){
-        $tempapi=$this->createMasterTempAPI();
-        $songs=$tempapi->getPlaylistTracks(self::playlistID);
-        $i=0;
-        foreach($songs->items as $item){
-            if($item->track->uri==$trackUri){
-                return true;
-            }
-            $i++;
-        }
-        return false;
-    }
 }
+?>

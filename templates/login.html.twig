@@ -17,10 +17,10 @@
         <h1 class="center">Hai effettuato l'accesso</h1>
         <a href="/"><h2>Torna alla HomePage</h2></a>
     {% else %}
-    {% if error is defined %}<h3>Credenziali errate!</h3>{% endif %}
-    <form class="formOne" method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
-        <input class="formOneInput" type="text" name="username" placeholder="Username"><br/>
-        <input class="formOneInput" type="password" name="password" placeholder="Password"><br/>
+    <form class="form-one" method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
+        {% if error is defined %}<h3>Credenziali errate!</h3>{% endif %}
+        <input class="form-oneInput" type="text" name="username" placeholder="Username"><br/>
+        <input class="form-oneInput" type="password" name="password" placeholder="Password"><br/>
         <input class="buttonLogin" type="submit" value="Login">
     </form>
     {% endif %}

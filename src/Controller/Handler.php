@@ -139,7 +139,7 @@ class Handler{
         if($this->checkWeeksAdds($idUser)+count($tracks)>$this->maxWeeklyAdds){
             return false;
         }
-        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $db=new mysqli("localhost","hnlzewad_root","FerrariVSPasquini:db","hnlzewad_edmdeathplaylistmachine");
         foreach($tracks as $track){
             $res=$db->query("SELECT * FROM added_tracks WHERE duplicated IS NULL AND removed IS NULL AND trackUri='$track'")->num_rows;
             if($res>0){
@@ -165,7 +165,7 @@ class Handler{
     }
 
     /*public function updatePlaylistHandler(){
-        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $db=new mysqli("localhost","hnlzewad_root","FerrariVSPasquini:db","hnlzewad_edmdeathplaylistmachine");
         $res=$db->query("SELECT idUser, accessToken, refreshToken FROM user");
         if($res){
             while($row = $res->fetch_assoc()){

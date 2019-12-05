@@ -2,6 +2,7 @@ html{
     height: 100%;
     background-image: linear-gradient(to bottom left, rgb(153, 18, 194), rgb(15, 189, 102));
     background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 body {
@@ -52,6 +53,7 @@ h3{
     border-radius: 100px;
     transition-duration: 0.4s;
     color: rgba(255, 255, 255, 0.7);
+    align-content: center;
 }
 
 .buttonLogin:hover {
@@ -63,6 +65,7 @@ h3{
 .collapsible-content .content-inner {
     background: rgba(250, 224, 66, .2);
     border-bottom: 1px solid rgba(250, 224, 66, .45);
+    align-content: center;
 
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
@@ -72,6 +75,7 @@ h3{
 .collapsible-content {
     max-height: 0px;
     overflow: auto;
+    text-align: center;
 
     transition: max-height .25s ease-in-out;
 }

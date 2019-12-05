@@ -10,7 +10,7 @@ use mysqli;
 class LoginModel
 {
     public function checkLogin($username, $password){
-        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $db=new mysqli("localhost","hnlzewad_root","FerrariVSPasquini:db","hnlzewad_edmdeathplaylistmachine");
         $statement=$db->prepare("SELECT * FROM user WHERE username=? AND password=AES_ENCRYPT(?,'chiavetemporanea')");
         $statement->bind_param("ss",$username,$password);
         $statement->execute();

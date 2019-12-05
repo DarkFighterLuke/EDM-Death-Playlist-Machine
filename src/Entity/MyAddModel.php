@@ -11,7 +11,7 @@ class MyAddModel
         $week[]=array();
         $week1[]=array();
         $oldweeks[]=array();
-        $db=new mysqli("localhost","hnlzewad_root","3cvS#WZ]lkYw","hnlzewad_edmdeathplaylistmachine");
+        $db=new mysqli("localhost","hnlzewad_root","FerrariVSPasquini:db","hnlzewad_edmdeathplaylistmachine");
         $res=$db->query("SELECT * FROM `added_tracks` WHERE datetime between LastSaturday() AND now() AND idUser=$idUser AND removed IS NULL ORDER BY datetime DESC");
         if($res){
             $i=0;

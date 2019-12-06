@@ -1,0 +1,21 @@
+{% if results is defined and results is not null %}
+<div class="content-inner">
+    <h2>Brani nella playlist</h2>
+    <table class="playlistTracks">
+        <tr>
+            <th>Titolo</th>
+            <th>Artista</th>
+            <th>Album</th>
+            <th>Utente</th>
+        </tr>
+        {% for result in results %}
+            <tr>
+                <td>{{ result.name }}</td>
+                <td>{{ result.artist }}</td>
+                <td>{{ result.album }}</td>
+                <td>{{ result.postedBy }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}

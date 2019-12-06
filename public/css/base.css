@@ -92,3 +92,8 @@ h3{
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+.playlistTracks {
+    margin-left:18%;
+    margin-right:auto;
+}

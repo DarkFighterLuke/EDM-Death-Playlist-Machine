@@ -9,7 +9,7 @@ class HandlerModel
     private $masterId=9;
 
     public function addToken($idUser, $access, $refresh){
-        $db=new mysqli("localhost","hnlzewad_root","FerrariVSPasquini:db","hnlzewad_edmdeathplaylistmachine");
+        $db=new mysqli("localhost","hnlzewad_root","","hnlzewad_edmdeathplaylistmachine");
         $statement=$db->prepare("UPDATE user SET accessToken=?, refreshToken=? WHERE idUSer=?");
         $statement->bind_param("ssi",$access,$refresh, $idUser);
         $result=$statement->execute();

@@ -1,0 +1,33 @@
+<script type="text/javascript">
+    function checkForm(){
+        with(document.form1){
+            if(username.value.trim()=="" || password.value.trim()==""){
+                window.alert("Inserisci Username e Password!");
+                return false;
+            }
+        }
+    }
+</script>
+
+
+{% if user is defined and user is not null %}
+    <h1 class="center">Hai effettuato l'accesso</h1>
+    <a href="/"><h2>Torna alla HomePage</h2></a>
+{% else %}
+    <form class="formOne" method="POST" action="{{ path('login') }}" name="form1" onsubmit="return(checkForm());">
+        {% if error is defined %}<h3>Credenziali errate!</h3>{% endif %}
+        <input class="formOneInput" type="text" name="username" placeholder="Username"><br/>
+        <input class="formOneInput" type="password" name="password" placeholder="Password"><br/>
+        <input class="buttonLogin" type="submit" value="Login">
+    </form>
+{% endif %}
+<br/>
+
+<div class="wrap-collabsible">
+    <input id="collapsible" class="toggle" type="checkbox" style="display: none">
+    <label for="collapsible" class="lbl-toggle buttonLogin">More Info</label>
+    <div class="collapsible-content">
+        {% include "playlistTracklist.html.twig" %}
+    </div>
+</div>
+

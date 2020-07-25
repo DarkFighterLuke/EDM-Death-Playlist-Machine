@@ -15,14 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class MyProfileController extends AbstractController
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         session_start();
     }
 
     /**
      * @Route("/profile", name="myprofile")
      */
-    public function show(){
+    public function show()
+    {
         return $this->render("myprofile.html.twig", ["user" => $_SESSION['user']]);
     }
 

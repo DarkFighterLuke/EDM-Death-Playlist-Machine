@@ -1,14 +1,17 @@
 <?php
 
 namespace App\Controller;
+
+use App\Entity\Genres;
 use App\Entity\HandlerModel;
 use SpotifyWebAPI;
 use mysqli;
 
-class Handler{
+class Handler
+{
 
-    private const playlistID="2X5H6OzOknmksRF2Eb1xlq";
-    public $maxWeeklyAdds=5;
+    private const playlistID = "2X5H6OzOknmksRF2Eb1xlq";
+    public $maxWeeklyAdds = 5;
 
     private $api;
     private $model;
@@ -16,10 +19,11 @@ class Handler{
     public function __construct()
     {
         //session_start();
-        $this->model=new HandlerModel();
+        $this->model = new HandlerModel();
     }
 
-    public function auth(){
+    public function auth()
+    {
         $session = new SpotifyWebAPI\Session(
             '2bc6c6e3a2424d2b9fb8c22462d16e0b',
             'fc8eee9ae9364d518d27c30f5beb7b36',
@@ -58,7 +62,8 @@ class Handler{
         die();
     }
 
-    public function callback(){
+    public function callback()
+    {
         $session = new SpotifyWebAPI\Session(
             '2bc6c6e3a2424d2b9fb8c22462d16e0b',
             'fc8eee9ae9364d518d27c30f5beb7b36',
@@ -66,11 +71,10 @@ class Handler{
         );
 
 
-
 // Request a access token using the code from Spotify
         $session->requestAccessToken($_GET['code']);
 
-        $this->api=new SpotifyWebAPI\SpotifyWebAPI();
+        $this->api = new SpotifyWebAPI\SpotifyWebAPI();
         $this->api->setSession($session);
         $this->api->setOptions([
             'auto_refresh' => true,
@@ -78,32 +82,33 @@ class Handler{
         $newAccessToken = $session->getAccessToken();
         $newRefreshToken = $session->getRefreshToken();
 
-        $_SESSION['user']->accessToken=$newAccessToken;
-        $_SESSION['user']->refreshToken=$newRefreshToken;
+        $_SESSION['user']->accessToken = $newAccessToken;
+        $_SESSION['user']->refreshToken = $newRefreshToken;
 
 
-        $success=$this->addTokenHandler($newAccessToken,$newRefreshToken);
+        $success = $this->addTokenHandler($newAccessToken, $newRefreshToken);
 
 
 // Send the user along and fetch some data!
-        if($success){
+        if ($success) {
             $this->checkScopes($session);
-        }
-        else{
+        } else {
             echo "<h1>Errore token</h1>";
         }
         die();
     }
 
-    private function checkScopes($session){
-        $scope=$session->getScope();
+    private function checkScopes($session)
+    {
+        $scope = $session->getScope();
         //check scope and then:
         $this->api->setAccessToken($session->getAccessToken());
-        $_SESSION["api"]=$this->api;
+        $_SESSION["api"] = $this->api;
         header("Location: https://edm-death-playlist-machine.netsons.org/public/index.php/");
     }
 
-    public function loginSetSession($accessToken, $refreshToken){
+    public function loginSetSession($accessToken, $refreshToken)
+    {
         $session = new SpotifyWebAPI\Session(
             '2bc6c6e3a2424d2b9fb8c22462d16e0b',
             'fc8eee9ae9364d518d27c30f5beb7b36',
@@ -117,36 +122,40 @@ class Handler{
         return $session;
     }
 
-    public function searchHandler(){
-        $query=$_GET['query'];
-        $query=str_replace("+", " ", $query);
-        $results=$_SESSION["api"]->search($query,"track",null);
+    public function searchHandler()
+    {
+        $query = $_GET['query'];
+        $query = str_replace("+", " ", $query);
+        $results = $_SESSION["api"]->search($query, "track", null);
         return $results;
     }
 
-    public function isDuplicated($trackUri){
+    public function isDuplicated($trackUri)
+    {
         return $this->model->isDuplicated($trackUri);
     }
 
-    public function addTokenHandler($access,$refresh){
-        $idUser=$_SESSION['user']->idUser;
+    public function addTokenHandler($access, $refresh)
+    {
+        $idUser = $_SESSION['user']->idUser;
         return $this->model->addToken($idUser, $access, $refresh);
     }
 
-    public function addTrackHandler($idUser, $tracks){
-        $date=date('Y-m-d h:i:s');
+    public function addTrackHandler($idUser, $tracks)
+    {
+        $date = date('Y-m-d h:i:s');
         //return $this->checkWeeksAdds($idUser);
-        if($this->checkWeeksAdds($idUser)+count($tracks)>$this->maxWeeklyAdds){
+        if ($this->checkWeeksAdds($idUser) + count($tracks) > $this->maxWeeklyAdds) {
             return false;
         }
-        $db=new mysqli("localhost","hnlzewad_root","FerrariVSPasquini:db","hnlzewad_edmdeathplaylistmachine");
-        foreach($tracks as $track){
-            $res=$db->query("SELECT * FROM added_tracks WHERE duplicated IS NULL AND removed IS NULL AND trackUri='$track'")->num_rows;
-            if($res>0){
-                $statement=$db->prepare("INSERT INTO added_tracks(idUser, trackUri, datetime, duplicated) VALUES(?, ?, now(), 1)");
-            }
-            else{
-                $statement=$db->prepare("INSERT INTO added_tracks(idUser,trackUri,datetime) VALUES(?, ?, now())");
+
+        $db = new mysqli("localhost", $GLOBALS["dbuser"], $GLOBALS["dbpassword"], "hnlzewad_edmdeathplaylistmachine");
+        foreach ($tracks as $track) {
+            $res = $db->query("SELECT * FROM added_tracks WHERE duplicated IS NULL AND removed IS NULL AND trackUri='$track'")->num_rows;
+            if ($res > 0) {
+                $statement = $db->prepare("INSERT INTO added_tracks(idUser, trackUri, datetime, duplicated) VALUES(?, ?, now(), 1)");
+            } else {
+                $statement = $db->prepare("INSERT INTO added_tracks(idUser,trackUri,datetime) VALUES(?, ?, now())");
             }
             $statement->bind_param("is", $idUser, $track);
             $statement->execute();
@@ -156,16 +165,19 @@ class Handler{
         return true;
     }
 
-    public function parseInfoFromUriHandler($trackUri){
+    public function parseInfoFromUriHandler($trackUri)
+    {
         return $this->api->getTrack($trackUri);
     }
 
-    public function checkWeeksAdds($idUser){
+    public function checkWeeksAdds($idUser)
+    {
         return $this->model->checkWeeksAdds($idUser);
     }
 
+    //nel caso in futuro Spotify consentisse le aggiunte nominali a playlist collaborative
     /*public function updatePlaylistHandler(){
-        $db=new mysqli("localhost","hnlzewad_root","FerrariVSPasquini:db","hnlzewad_edmdeathplaylistmachine");
+        $db=new mysqli("localhost",$GLOBALS["dbuser"],$GLOBALS["dbpassword"],"hnlzewad_edmdeathplaylistmachine");
         $res=$db->query("SELECT idUser, accessToken, refreshToken FROM user");
         if($res){
             while($row = $res->fetch_assoc()){
@@ -201,10 +213,11 @@ class Handler{
         }
     }*/
 
-    public function createMasterTempAPI(){
-        $data=$this->model->updatePlaylist();
-        $tempapi=new SpotifyWebAPI\SpotifyWebAPI();
-        $session=$this->loginSetSession($data["masterTokens"]["accessToken"], $data["masterTokens"]["refreshToken"]);
+    public function createMasterTempAPI()
+    {
+        $data = $this->model->updatePlaylist();
+        $tempapi = new SpotifyWebAPI\SpotifyWebAPI();
+        $session = $this->loginSetSession($data["masterTokens"]["accessToken"], $data["masterTokens"]["refreshToken"]);
         $tempapi->setSession($session);
         $tempapi->setOptions([
             'auto_refresh' => true,
@@ -212,62 +225,78 @@ class Handler{
         return $tempapi;
     }
 
-    public function updatePlaylistHandler(){
-        $data=$this->model->updatePlaylist();
-        $tempapi=$this->createMasterTempAPI();
-        try{
-            if($data["tracks"]){
-                $i=0;
-                while($i<count($data["tracks"])){
+    public function updatePlaylistHandler()
+    {
+        $data = $this->model->updatePlaylist();
+        $tempapi = $this->createMasterTempAPI();
+        try {
+            if ($data["tracks"]) {
+                $i = 0;
+                while ($i < count($data["tracks"])) {
+
                     $tempapi->addPlaylistTracks(self::playlistID, $data["tracks"][$i]["trackUri"], ["position" => 0]);
                     $i++;
                 }
             }
             return true;
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             echo $e;
             return false;
         }
     }
 
-    public function removeTrackHandler($trackUri, $tracks){
+    public function removeTrackHandler($trackUri, $tracks)
+    {
         $tempapi = $this->createMasterTempAPI();
         $tempapi->deletePlaylistTracks(self::playlistID, $tracks);
-        foreach($trackUri as $uri){
-            $success=$this->model->removeTrack($uri);
+        foreach ($trackUri as $uri) {
+            $success = $this->model->removeTrack($uri);
         }
     }
 
-    public function myTracksHandler(){
-        $tempapi=new SpotifyWebAPI\SpotifyWebAPI();
-        $session=$this->loginSetSession($_SESSION["user"]->accessToken, $_SESSION["user"]->refreshToken);
+    public function myTracksHandler()
+    {
+        $tempapi = new SpotifyWebAPI\SpotifyWebAPI();
+        $session = $this->loginSetSession($_SESSION["user"]->accessToken, $_SESSION["user"]->refreshToken);
         $tempapi->setSession($session);
-        $library=$tempapi->getMySavedTracks(['limit' => 20]);
-        $i=0;
-        foreach($library->items as $item){
-            $tracks[$i]["name"]=$item->track->name;
-            $tracks[$i]["artist"]=$item->track->artists[0]->name;;
-            $tracks[$i]["uri"]=$item->track->uri;
-            $tracks[$i]["duplicated"]=$this->model->isDuplicated($item->track->uri);
+        $library = $tempapi->getMySavedTracks(['limit' => 20]);
+        $i = 0;
+        foreach ($library->items as $item) {
+            $tracks[$i]["name"] = $item->track->name;
+            $tracks[$i]["artist"] = $item->track->artists[0]->name;
+            checkGenre($tracks[$i]["artist"], $tempapi);
+            $tracks[$i]["uri"] = $item->track->uri;
+            $tracks[$i]["duplicated"] = $this->model->isDuplicated($item->track->uri);
             $i++;
         }
-        return isset($tracks)?$tracks:null;
+        return isset($tracks) ? $tracks : null;
     }
 
-    public function showOfficialPlaylistHandler(){
-        $tempapi=$this->createMasterTempAPI();
-        $songs=$tempapi->getPlaylistTracks(self::playlistID);
-        $i=0;
-        foreach($songs->items as $item){
-            $tracks[$i]["name"]=$item->track->name;
-            $tracks[$i]["artist"]=$item->track->artists[0]->name;;
-            $tracks[$i]["uri"]=$item->track->uri;
-            $tracks[$i]["album"]=$item->track->album->name;
-            $tracks[$i]["postedBy"]=$this->model->postedBy($item->track->uri);
+    //filtro generi incompleto
+    private function checkGenre($artist, $tempapi)
+    {
+        $genres = $tempapi->getArtist($artist)->genres;
+        $allowedGenres = (new Genres())->getGenres();
+        foreach ($genres as $genre) {
+            in_array($genre, $allowedGenres);
+        }
+    }
+
+    public function showOfficialPlaylistHandler()
+    {
+        $tempapi = $this->createMasterTempAPI();
+        $songs = $tempapi->getPlaylistTracks(self::playlistID);
+        $i = 0;
+        foreach ($songs->items as $item) {
+            $tracks[$i]["name"] = $item->track->name;
+            $tracks[$i]["artist"] = $item->track->artists[0]->name;;
+            $tracks[$i]["uri"] = $item->track->uri;
+            $tracks[$i]["album"] = $item->track->album->name;
+            $tracks[$i]["postedBy"] = $this->model->postedBy($item->track->uri);
             $i++;
         }
-        return isset($tracks)?$tracks:null;
+        return isset($tracks) ? $tracks : null;
     }
 }
+
 ?>

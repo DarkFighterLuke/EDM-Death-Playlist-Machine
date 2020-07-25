@@ -13,16 +13,18 @@ class User
 {
     public $idUser, $username, $password, $email, $accessToken, $refreshToken, $admin;
 
-    public function __construct($idUser, $username, $password, $accessToken, $refreshToken, $admin){
-        $this->idUser=$idUser;
-        $this->username=$username;
-        $this->password=$password;
-        $this->accessToken=$accessToken;
-        $this->refreshToken=$refreshToken;
-        $this->admin=$admin;
+    public function __construct($idUser, $username, $password, $accessToken, $refreshToken, $admin)
+    {
+        $this->idUser = $idUser;
+        $this->username = $username;
+        $this->password = $password;
+        $this->accessToken = $accessToken;
+        $this->refreshToken = $refreshToken;
+        $this->admin = $admin;
     }
 
-    public function getIdUser(){
+    public function getIdUser()
+    {
         return $this->idUser;
     }
 }

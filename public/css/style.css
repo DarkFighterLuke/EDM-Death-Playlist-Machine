@@ -1,0 +1,200 @@
+body{
+font-family: 'Open Sans', sans-serif;
+    width: 1500px;
+    margin:0 auto;
+    height:100vh;
+    margin-bottom: 45px;
+}
+
+
+.box {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    background: #ffe6e6;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px black;
+    border-radius: 10px;
+}
+
+form {
+display: inline; 
+}
+
+.btn-op{
+  background: #4d0000;
+  height: 38px;
+  font-size: 16px;
+  min-width: 38px;
+}
+
+.noborder{
+  border: none;
+}
+
+.topnav {
+  overflow: hidden;
+  padding-top: 25px;
+}
+
+h1{
+  font-size: 3em;
+   margin: 0 0 0 0;
+  overflow:hidden;
+}
+
+input[type="checkbox"]{
+    position: relative;
+    width: 40px;
+    height: 20px;
+    -webkit-appearance: none;
+    background: #aaa;
+    outline: none;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+input:checked[type="checkbox"]
+{
+  background: #4d0000;
+}
+
+input[type="checkbox"]:before
+{
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  background: #ffffff;
+  transform: scale(1.1);
+  transition: .2s;
+}
+
+input:checked[type="checkbox"]:before
+{
+  left: 20px;
+}
+
+input[type=text], input[type=date], input[type=number], input[type=password], select, textarea{
+    border:2px solid #aaa;
+    border-radius:5px;
+    outline:none;
+    padding:10px;
+    box-sizing:border-box;
+  }
+
+  input[type=text]:focus, input[type=date]:focus, input[type=number]:focus, input[type=password]:focus, textarea:focus{
+    border-color:#4d0000;
+    box-shadow:0 0 8px 0 #4d0000;
+    transition:.3s;
+  }
+
+button, input[type="submit"] {
+  cursor: pointer;
+  border: none;
+  background: #4d0000;
+  color: #f2f2f2;
+  padding: 3px 10px 3px 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  -webkit-transition-property: background,  color;
+  -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    }
+
+button:hover, input[type="submit"]:hover {
+  background: white;
+  color: #4d0000;
+} 
+
+h2{
+  font-size: 1.7em;
+}
+
+.logo {
+  height: 2em;
+  max-width: 100%;
+  margin: 0.8em;
+  filter: grayscale(100%);
+}
+
+table {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, tr {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 2px solid #4d0000;
+}
+
+.topnav a {
+  float: left;
+   display: inline-block;
+   background-color: #4d0000;
+    margin:0;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.left-corner {
+  border-radius: 7px 0px 0px 0px;
+}
+
+.right-corner {
+  border-radius: 0px 7px 0px 0px;
+}
+
+.topnav a:hover{
+  background-color: #ffe6e6;
+  color: #4d0000;
+}
+
+.topnav a.act {
+  background-color: #ffe6e6;
+  color: #4d0000;
+}
+
+.sub{
+  padding: 15px 30px 15px 30px;
+  background-color: #ffe6e6;
+  border-top-right-radius: 7px;
+
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+footer {
+     background-color: #4d0000;
+     margin: 0 0 0 0;
+     padding: 15px 30px 15px 30px;
+     border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+      margin-bottom: 45px;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1000px) {
+  body{
+    width: 100%;
+  }
+}
+
+label{
+  font-size: 10px;
+}

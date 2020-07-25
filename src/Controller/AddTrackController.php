@@ -15,15 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AddTrackController extends AbstractController
 {
-    public function __construct(){
+    public function __construct()
+    {
         session_start();
     }
 
     /**
      * @Route("/addtrack", name="addtrack")
      */
-    public function __invoke(){
-        return $this->render("addtrack.html.twig", ["user" => isset($_SESSION['user'])?$_SESSION['user']:null]);
+    public function __invoke()
+    {
+        return $this->render("addtrack.html.twig", ["user" => isset($_SESSION['user']) ? $_SESSION['user'] : null]);
     }
 
 }

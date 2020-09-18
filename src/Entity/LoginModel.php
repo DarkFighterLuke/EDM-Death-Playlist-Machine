@@ -13,7 +13,8 @@ class LoginModel
     public function checkLogin($username, $password)
     {
         $db = new mysqli("localhost", $GLOBALS["dbuser"], $GLOBALS["dbpassword"], "hnlzewad_edmdeathplaylistmachine");
-        $statement = $db->prepare("SELECT * FROM user WHERE username=? AND password=AES_ENCRYPT(?,'chiavetemporanea')");
+        $encryptionKey=$GLOBALS["encryptionKey"];
+        $statement = $db->prepare("SELECT * FROM user WHERE username=? AND password=AES_ENCRYPT(?,'$encryptionKey')");
         $statement->bind_param("ss", $username, $password);
         $statement->execute();
         $result = $statement->get_result();
